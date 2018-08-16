@@ -26,8 +26,15 @@ public class PackageService {
 
     public Bundle createPackage(Bundle bundle) throws PriceMismatchException {
         productService.validateProductPrices(new ArrayList<>(bundle.getProducts()));
+        return bundleRepository.saveAndFlush(bundle);
+    }
 
-        return bundleRepository.save(bundle);
+    public Bundle updatePackage(Bundle bundle) throws PriceMismatchException, UnknownBundleException {
+        if (!bundleRepository.existsById(bundle.getId())) {
+            throw new UnknownBundleException();
+        }
+        productService.validateProductPrices(new ArrayList<>(bundle.getProducts()));
+        return bundleRepository.saveAndFlush(bundle);
     }
 
     public List<Bundle> getAll() {

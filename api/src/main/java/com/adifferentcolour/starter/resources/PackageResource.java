@@ -3,6 +3,7 @@ package com.adifferentcolour.starter.resources;
 
 import com.adifferentcolour.starter.domain.Bundle;
 import com.adifferentcolour.starter.exceptions.PriceMismatchException;
+import com.adifferentcolour.starter.exceptions.UnknownBundleException;
 import com.adifferentcolour.starter.services.PackageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +23,12 @@ public class PackageResource {
 
     @GetMapping("/get")
     public Bundle getPackage(@RequestParam("id") long id) {
-        Bundle pack = packageService.getById(id);
-        return pack;
+        return packageService.getById(id);
+    }
+
+    @PutMapping("/update")
+    public Bundle update(@RequestBody Bundle bundle) throws PriceMismatchException, UnknownBundleException {
+        return packageService.updatePackage(bundle);
     }
 
     @GetMapping("/list-all")
