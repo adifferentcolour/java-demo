@@ -5,7 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Builder
@@ -31,6 +33,8 @@ public class Bundle {
     private int totalPrice;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @ElementCollection(targetClass = Product.class)
     @JoinColumn(name = "products_id")
-    private Set<Product> products = new HashSet<>();
+    private List<Product> products = new ArrayList<>();
+
 }
