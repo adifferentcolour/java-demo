@@ -26,7 +26,18 @@ public class ProductService {
         this.restTemplate = restTemplate;
     }
 
-    public List<Product> getAllProducts(String username, String password) {
+    public void validateProductPrices(List<Product> requestProductList) throws PriceMismatchException {
+        List<Product> currentProductList = getAllProducts("user", "pass");
+
+        for (Product requestedProduct : requestProductList) {
+            Product currentProduct = getByProductId(currentProductList, requestedProduct.getId());
+            if (requestedProduct.getUsdPrice() != currentProduct.getUsdPrice()) {
+                throw new PriceMismatchException();
+            }
+        }
+    }
+
+    private List<Product> getAllProducts(String username, String password) {
         final String plainCreds = username + ":" + password;
         final byte[] plainCredsBytes = plainCreds.getBytes();
         final byte[] base64CredsBytes = Base64Utils.encode(plainCredsBytes);
@@ -38,17 +49,6 @@ public class ProductService {
 
 
         return restTemplate.exchange(PRODUCTS_URL, HttpMethod.GET, request, new ParameterizedTypeReference<List<Product>>(){}).getBody();
-    }
-
-    public void validateProductPrices(List<Product> requestProductList) throws PriceMismatchException {
-        List<Product> currentProductList = getAllProducts("user", "pass");
-
-        for (Product requestedProduct : requestProductList) {
-            Product currentProduct = getByProductId(currentProductList, requestedProduct.getId());
-            if (requestedProduct.getUsdPrice() != currentProduct.getUsdPrice()) {
-                throw new PriceMismatchException();
-            }
-        }
     }
 
     private Product getByProductId(List<Product> productList, String productId) throws UnknownProductException {

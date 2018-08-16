@@ -41,4 +41,9 @@ public class PackageResource {
         return packageService.createPackage(bundle);
     }
 
+    @PostMapping("/delete")
+    public void delete(@RequestParam("id") long id) throws UnknownBundleException {
+        packageService.delete(id);
+    }
+
 }

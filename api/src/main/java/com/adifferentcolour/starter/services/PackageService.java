@@ -44,4 +44,12 @@ public class PackageService {
     public Bundle getById(long id) {
         return bundleRepository.findById(id).orElseThrow(UnknownBundleException::new);
     }
+
+    public void delete(long id) throws UnknownBundleException {
+        if (!bundleRepository.existsById(id)) {
+            throw new UnknownBundleException();
+        }
+
+        bundleRepository.deleteById(id);
+    }
 }
