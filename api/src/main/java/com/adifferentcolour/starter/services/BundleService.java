@@ -1,6 +1,7 @@
 package com.adifferentcolour.starter.services;
 
 import com.adifferentcolour.starter.domain.Bundle;
+import com.adifferentcolour.starter.domain.Product;
 import com.adifferentcolour.starter.exceptions.PriceMismatchException;
 import com.adifferentcolour.starter.exceptions.UnknownBundleException;
 import com.adifferentcolour.starter.repositories.BundleRepository;
@@ -11,21 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PackageService {
+public class BundleService {
 
     private final ProductService productService;
     private BundleRepository bundleRepository;
 
     @Autowired
-    public PackageService(ProductService productService,
-                          BundleRepository bundleRepository) {
+    public BundleService(ProductService productService,
+                         BundleRepository bundleRepository) {
         this.productService = productService;
         this.bundleRepository = bundleRepository;
     }
 
 
-    public Bundle createPackage(Bundle bundle) throws PriceMismatchException {
+    public Bundle savePackage(Bundle bundle) throws PriceMismatchException {
         productService.validateProductPrices(new ArrayList<>(bundle.getProducts()));
+        bundle.setTotalPrice(bundle.getProducts().stream().mapToInt(Product::getUsdPrice).sum());
         return bundleRepository.saveAndFlush(bundle);
     }
 
@@ -33,8 +35,7 @@ public class PackageService {
         if (!bundleRepository.existsById(bundle.getId())) {
             throw new UnknownBundleException();
         }
-        productService.validateProductPrices(new ArrayList<>(bundle.getProducts()));
-        return bundleRepository.saveAndFlush(bundle);
+        return savePackage(bundle);
     }
 
     public List<Bundle> getAll() {
