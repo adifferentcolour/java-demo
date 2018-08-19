@@ -1,6 +1,6 @@
-package com.adifferentcolour.starter.test.support.config;
+package support.config;
 
-import com.adifferentcolour.starter.test.support.api.AppInfoAPI;
+import support.api.AppInfoAPI;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

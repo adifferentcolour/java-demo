@@ -1,4 +1,4 @@
-package com.adifferentcolour.starter.test.support.api;
+package support.api;
 
 import com.adifferentcolour.starter.domain.Bundle;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import java.net.URI;
 @Component
 public class PackageAPI {
 
-    private static final String BASE_URL = "http://localhost:8080/api/v1/package";
+    private static final String BASE_URL = "http://localhost:8080/api`/package";
 
     private RestTemplate restTemplate;
 

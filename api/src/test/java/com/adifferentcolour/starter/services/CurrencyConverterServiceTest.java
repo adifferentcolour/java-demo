@@ -1,4 +1,4 @@
-package com.adifferentcolour.starter.test;
+package com.adifferentcolour.starter.services;
 
 import com.adifferentcolour.starter.domain.LatestCurrencyRates;
 import com.adifferentcolour.starter.services.CurrencyConverterService;

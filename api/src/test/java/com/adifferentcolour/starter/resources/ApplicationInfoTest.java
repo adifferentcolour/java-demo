@@ -1,7 +1,7 @@
-package com.adifferentcolour.starter.test;
+package com.adifferentcolour.starter.resources;
 
-import com.adifferentcolour.starter.test.support.api.AppInfoAPI;
-import com.adifferentcolour.starter.test.support.config.TestConfig;
+import support.api.AppInfoAPI;
+import support.config.TestConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(SpringRunner.class)
 @Import(TestConfig.class)
-public class AppInfoTest {
+public class ApplicationInfoTest {
 
     @Autowired
     private AppInfoAPI appInfoAPI;

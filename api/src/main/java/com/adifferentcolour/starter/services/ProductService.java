@@ -38,15 +38,10 @@ public class ProductService {
     }
 
     private List<Product> getAllProducts(String username, String password) {
-        final String plainCreds = username + ":" + password;
-        final byte[] plainCredsBytes = plainCreds.getBytes();
-        final byte[] base64CredsBytes = Base64Utils.encode(plainCredsBytes);
-        final String base64Creds = new String(base64CredsBytes);
-
+        final String encodedAuth = new String(Base64Utils.encode(String.format("%s:%s", username, password).getBytes()));
         final HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.AUTHORIZATION, "Basic " + base64Creds);
+        headers.add(HttpHeaders.AUTHORIZATION, "Basic " + encodedAuth);
         HttpEntity<String> request = new HttpEntity<String>(headers);
-
 
         return restTemplate.exchange(PRODUCTS_URL, HttpMethod.GET, request, new ParameterizedTypeReference<List<Product>>(){}).getBody();
     }
