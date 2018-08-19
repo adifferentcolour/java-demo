@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/package")
+@RequestMapping("/api/package")
 public class PackageResource {
 
     private final BundleService bundleService;
@@ -21,27 +21,27 @@ public class PackageResource {
         this.bundleService = bundleService;
     }
 
-    @GetMapping("/get")
-    public Bundle getPackage(@RequestParam("id") long id) {
+    @GetMapping
+    public Bundle get(@RequestParam("id") long id) {
         return bundleService.getById(id);
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public Bundle update(@RequestBody Bundle bundle) throws PriceMismatchException, UnknownBundleException {
         return bundleService.updatePackage(bundle);
     }
 
-    @GetMapping("/list-all")
-    public List<Bundle> listAllPackages() {
+    @GetMapping("/all")
+    public List<Bundle> listAll() {
         return bundleService.getAll();
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public Bundle create(@RequestBody Bundle bundle) throws PriceMismatchException {
         return bundleService.savePackage(bundle);
     }
 
-    @PostMapping("/delete")
+    @DeleteMapping
     public void delete(@RequestParam("id") long id) throws UnknownBundleException {
         bundleService.delete(id);
     }
