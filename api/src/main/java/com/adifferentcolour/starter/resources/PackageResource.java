@@ -22,7 +22,7 @@ public class PackageResource {
     }
 
     @GetMapping
-    public Bundle get(@RequestParam("id") long id) {
+    public Bundle get(@RequestParam("id") long id) throws UnknownBundleException {
         return bundleService.getById(id);
     }
 

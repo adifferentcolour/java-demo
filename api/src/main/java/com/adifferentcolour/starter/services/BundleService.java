@@ -42,7 +42,7 @@ public class BundleService {
         return bundleRepository.findAll();
     }
 
-    public Bundle getById(long id) {
+    public Bundle getById(long id) throws UnknownBundleException {
         return bundleRepository.findById(id).orElseThrow(UnknownBundleException::new);
     }
 
