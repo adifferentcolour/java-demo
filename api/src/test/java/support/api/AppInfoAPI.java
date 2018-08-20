@@ -1,14 +1,10 @@
-package com.adifferentcolour.starter.test.support.api;
+package support.api;
 
 import com.adifferentcolour.starter.domain.ApplicationInfo;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
-import java.util.Arrays;
-import java.util.List;
 
 @Component
 public class AppInfoAPI {
