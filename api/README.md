@@ -14,11 +14,11 @@ A java demo written in Java using SpringBoot. Offers a RESTful for managing pack
 
 # API
 
-* (Create Package)[api-docs/create.md]: `POST /api/package`
-* (Update Package)[api-docs/update.md]: `PUT /api/package`
-* (Delete Package)[api-docs/delete.md]: `DELETE /api/package?id=:id`
-* (View Package)[api-docs/view.md]: `GET /api/package?id=:id`
-* (List All Packages)[api-docs/list-all.md]: `GET /api/package/all`
+* [Create Package](api-docs/create.md): `POST /api/package`
+* [Update Package](api-docs/update.md): `PUT /api/package`
+* [Delete Package](api-docs/delete.md): `DELETE /api/package?id=:id`
+* [View Package](api-docs/view.md): `GET /api/package?id=:id`
+* [List All Packages](api-docs/list-all.md): `GET /api/package/all`
 
 
 
