@@ -1,11 +1,13 @@
 ## Create Package
 
-**URL:** `/api/package?id=:id`
+**URL:** `/api/package?id=:id&currency=:currency`
 **Method:** `GET`
+
+**Constraints: ** `id` is required, `currency` is optional (defaulting to USD)
 
 **Url Example:**
 ```json
-http://localhost:8080/api/package?id=1
+http://localhost:8080/api/package?id=1&currency=USD
 ```
 
 ### Success

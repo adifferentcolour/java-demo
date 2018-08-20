@@ -10,18 +10,23 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class BundleService {
 
     private final ProductService productService;
-    private BundleRepository bundleRepository;
+    private final BundleRepository bundleRepository;
+    private final CurrencyConverterService currencyConverterService;
 
     @Autowired
     public BundleService(ProductService productService,
-                         BundleRepository bundleRepository) {
+                         BundleRepository bundleRepository,
+                         CurrencyConverterService currencyConverterService) {
         this.productService = productService;
         this.bundleRepository = bundleRepository;
+        this.currencyConverterService = currencyConverterService;
     }
 
 
@@ -42,8 +47,16 @@ public class BundleService {
         return bundleRepository.findAll();
     }
 
-    public Bundle getById(long id) throws UnknownBundleException {
-        return bundleRepository.findById(id).orElseThrow(UnknownBundleException::new);
+    public Bundle getById(long id, String currencyCode) throws UnknownBundleException {
+        Bundle bundle = bundleRepository.findById(id).orElseThrow(UnknownBundleException::new);
+
+        if (currencyCode != null) {
+            bundle.setTotalPrice(bundle.getProducts().stream()
+                    .mapToInt(p -> currencyConverterService.convert(p.getUsdPrice(), currencyCode))
+                    .sum());
+        }
+
+        return bundle;
     }
 
     public void delete(long id) throws UnknownBundleException {

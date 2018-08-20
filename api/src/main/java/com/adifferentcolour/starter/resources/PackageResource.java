@@ -22,8 +22,8 @@ public class PackageResource {
     }
 
     @GetMapping
-    public Bundle get(@RequestParam("id") long id) throws UnknownBundleException {
-        return bundleService.getById(id);
+    public Bundle get(@RequestParam("id") long id, @RequestParam(value = "currency", required = false) String currencyCode) throws UnknownBundleException {
+        return bundleService.getById(id, currencyCode);
     }
 
     @PutMapping

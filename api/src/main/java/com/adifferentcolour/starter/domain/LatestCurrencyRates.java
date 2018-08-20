@@ -6,7 +6,6 @@ import lombok.Data;
 import java.util.Map;
 
 @Data
-@Builder
 public class LatestCurrencyRates {
 
     private final String name = "java-demo";
