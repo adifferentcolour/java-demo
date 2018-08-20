@@ -1,6 +1,6 @@
 package com.adifferentcolour.starter.resources;
 
-import com.adifferentcolour.starter.domain.Bundle;
+import com.adifferentcolour.starter.domain.Package;
 import com.adifferentcolour.starter.domain.Product;
 import support.api.PackageAPI;
 import support.config.TestConfig;
@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Collections;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(SpringRunner.class)
 @Import(TestConfig.class)
@@ -21,21 +20,21 @@ public class ProductResourceTest {
     private PackageAPI packageApi;
 
     @Test
-    public void should_create_bundle() {
+    public void should_create_package() {
         Product product = new Product();
         product.setId("VqKb4tyj9V6i");
         product.setName("Shield");
         product.setUsdPrice(1149);
 
-        Bundle bundle = new Bundle();
-        bundle.setDescription("desc");
-        bundle.setName("name");
-        bundle.setTotalPrice(1149);
-        bundle.setProducts(Collections.singletonList(product));
+        Package aPackage = new Package();
+        aPackage.setDescription("desc");
+        aPackage.setName("name");
+        aPackage.setTotalPrice(1149);
+        aPackage.setProducts(Collections.singletonList(product));
 
-        Bundle createdBundle = packageApi.createPackage(bundle);
+        Package createdPackage = packageApi.createPackage(aPackage);
 
-        Bundle fetchedPackaged = packageApi.getPackage(createdBundle.getId());
+        Package fetchedPackaged = packageApi.getPackage(createdPackage.getId());
 
     }
 

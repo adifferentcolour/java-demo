@@ -1,7 +1,7 @@
 package com.adifferentcolour.starter.services;
 
 import com.adifferentcolour.starter.domain.LatestCurrencyRates;
-import com.adifferentcolour.starter.exceptions.UnknownBundleException;
+import com.adifferentcolour.starter.exceptions.UnknownPackageException;
 import com.adifferentcolour.starter.exceptions.UnknownCurrencyCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class CurrencyConverterService {
         this.restTemplate = restTemplate;
     }
 
-    public int convert(int fromAmount, String toCurrency) throws UnknownBundleException {
+    public int convert(int fromAmount, String toCurrency) throws UnknownPackageException {
         String url = String.format(URL_PATTERN, apiKey);
         LatestCurrencyRates currencyRates = restTemplate.getForObject(URI.create(url), LatestCurrencyRates.class);
 

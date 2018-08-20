@@ -20,5 +20,5 @@ Will return 200 if the object was successfully deleted
 
 **Code:** `400 BAD REQUEST`
 
-**Content:** `Unknown bundle identifier`
+**Content:** `Unknown package identifier`
 

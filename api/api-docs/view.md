@@ -39,5 +39,13 @@ Will return the object relating to the id supplied
 
 **Code:** `400 BAD REQUEST`
 
-**Content:** `Unknown bundle identifier`
+**Content:** `Unknown package identifier`
+
+---------------------------------------
+
+**Condition:** If `id` is not found
+
+**Code:** `400 BAD REQUEST`
+
+**Content:** `Unknown package identifier`
 

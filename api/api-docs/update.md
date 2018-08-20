@@ -70,5 +70,5 @@ Will return the updated object with the total price recalculated.
 
 **Code:** `400 BAD REQUEST`
 
-**Content:** `Unknown bundle identifier`
+**Content:** `Unknown package identifier`
 

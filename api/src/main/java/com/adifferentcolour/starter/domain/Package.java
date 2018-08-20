@@ -12,8 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "bundles")
-public class Bundle {
+@Table(name = "packages")
+public class Package {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = 0L;

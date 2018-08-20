@@ -1,10 +1,10 @@
 package com.adifferentcolour.starter.resources;
 
 
-import com.adifferentcolour.starter.domain.Bundle;
+import com.adifferentcolour.starter.domain.Package;
 import com.adifferentcolour.starter.exceptions.PriceMismatchException;
-import com.adifferentcolour.starter.exceptions.UnknownBundleException;
-import com.adifferentcolour.starter.services.BundleService;
+import com.adifferentcolour.starter.exceptions.UnknownPackageException;
+import com.adifferentcolour.starter.services.PackageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,36 +14,36 @@ import java.util.List;
 @RequestMapping("/api/package")
 public class PackageResource {
 
-    private final BundleService bundleService;
+    private final PackageService packageService;
 
     @Autowired
-    public PackageResource(BundleService bundleService) {
-        this.bundleService = bundleService;
+    public PackageResource(PackageService packageService) {
+        this.packageService = packageService;
     }
 
     @GetMapping
-    public Bundle get(@RequestParam("id") long id, @RequestParam(value = "currency", required = false) String currencyCode) throws UnknownBundleException {
-        return bundleService.getById(id, currencyCode);
+    public Package get(@RequestParam("id") long id, @RequestParam(value = "currency", required = false) String currencyCode) throws UnknownPackageException {
+        return packageService.getById(id, currencyCode);
     }
 
     @PutMapping
-    public Bundle update(@RequestBody Bundle bundle) throws PriceMismatchException, UnknownBundleException {
-        return bundleService.updatePackage(bundle);
+    public Package update(@RequestBody Package aPackage) throws PriceMismatchException, UnknownPackageException {
+        return packageService.updatePackage(aPackage);
     }
 
     @GetMapping("/all")
-    public List<Bundle> listAll() {
-        return bundleService.getAll();
+    public List<Package> listAll() {
+        return packageService.getAll();
     }
 
     @PostMapping
-    public Bundle create(@RequestBody Bundle bundle) throws PriceMismatchException {
-        return bundleService.savePackage(bundle);
+    public Package create(@RequestBody Package aPackage) throws PriceMismatchException {
+        return packageService.savePackage(aPackage);
     }
 
     @DeleteMapping
-    public void delete(@RequestParam("id") long id) throws UnknownBundleException {
-        bundleService.delete(id);
+    public void delete(@RequestParam("id") long id) throws UnknownPackageException {
+        packageService.delete(id);
     }
 
 }

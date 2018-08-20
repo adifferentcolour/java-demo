@@ -1,8 +1,8 @@
 package com.adifferentcolour.starter.repositories;
 
-import com.adifferentcolour.starter.domain.Bundle;
+import com.adifferentcolour.starter.domain.Package;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BundleRepository extends JpaRepository<Bundle, Long> {
+public interface PackageRepository extends JpaRepository<Package, Long> {
     public boolean existsById(Long id);
 }

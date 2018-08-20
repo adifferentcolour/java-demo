@@ -1,7 +1,8 @@
 package com.adifferentcolour.starter.resources;
 
 import com.adifferentcolour.starter.exceptions.PriceMismatchException;
-import com.adifferentcolour.starter.exceptions.UnknownBundleException;
+import com.adifferentcolour.starter.exceptions.UnknownPackageException;
+import com.adifferentcolour.starter.exceptions.UnknownCurrencyCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -23,9 +24,16 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, body, null, HttpStatus.BAD_REQUEST, webRequest);
     }
 
-    @ExceptionHandler(value = { UnknownBundleException.class })
-    public ResponseEntity handleUnknownBundle(RuntimeException ex, WebRequest webRequest) {
-        String body = "Unknown bundle identifier";
+    @ExceptionHandler(value = { UnknownPackageException.class })
+    public ResponseEntity handleUnknownPackage(RuntimeException ex, WebRequest webRequest) {
+        String body = "Unknown package identifier";
+        LOGGER.error(body, ex.getCause());
+        return handleExceptionInternal(ex, body, null, HttpStatus.BAD_REQUEST, webRequest);
+    }
+
+    @ExceptionHandler(value = { UnknownCurrencyCode.class })
+    public ResponseEntity handleUnknownCurrencyCode(RuntimeException ex, WebRequest webRequest) {
+        String body = "Unknown Currency Code identifier";
         LOGGER.error(body, ex.getCause());
         return handleExceptionInternal(ex, body, null, HttpStatus.BAD_REQUEST, webRequest);
     }

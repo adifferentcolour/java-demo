@@ -36,9 +36,8 @@ public class CurrencyConverterServiceTest {
         ratesMap.put("CNY", 7.56199f);
         ratesMap.put("JPY", 126.261618f);
         ratesMap.put("EUR", 1f);
-        currencyRates = LatestCurrencyRates.builder()
-                .rates(ratesMap)
-                .build();
+        currencyRates = new LatestCurrencyRates();
+        currencyRates.setRates(ratesMap);
     }
 
     @Test
